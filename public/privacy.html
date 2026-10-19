@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Privacy Policy — TaskFlow</title>
+  <link rel="icon" type="image/svg+xml" href="logo-tile.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.legal-page {
+      background-color: var(--bg-main, #121212);
+      color: var(--text-white, #FFFFFF);
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .legal-nav {
+      background-color: var(--bg-surface, #1E1F25);
+      border-bottom: 1px solid var(--border-subtle, #2A2B36);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+
+    .legal-nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background-color: var(--bg-surface-elevated, #242630);
+      border: 1px solid var(--border-subtle, #2A2B36);
+      border-radius: var(--radius-sm, 8px);
+      color: var(--text-white, #FFFFFF);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav-back:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-task-card, #8FB0F7);
+      color: var(--color-task-card, #8FB0F7);
+    }
+
+    .legal-container {
+      max-width: 820px;
+      margin: 36px auto 60px;
+      padding: 0 20px;
+      flex: 1;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .legal-card {
+      background-color: var(--bg-surface, #1E1F25);
+      border: 1px solid var(--border-subtle, #2A2B36);
+      border-radius: var(--radius-xl, 24px);
+      padding: 40px 36px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (max-width: 600px) {
+      .legal-card {
+        padding: 24px 20px;
+        border-radius: var(--radius-lg, 16px);
+      }
+      .legal-container {
+        margin: 20px auto 40px;
+      }
+    }
+
+    .legal-header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border-subtle, #2A2B36);
+      padding-bottom: 24px;
+    }
+
+    .legal-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background-color: rgba(123, 114, 224, 0.15);
+      color: var(--color-work, #7B72E0);
+      border: 1px solid rgba(123, 114, 224, 0.3);
+      border-radius: var(--radius-full, 9999px);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .legal-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin: 0 0 8px;
+      color: var(--text-white, #FFFFFF);
+    }
+
+    .legal-subtitle {
+      font-size: 14px;
+      color: var(--text-muted, #A3A8B8);
+      margin: 0;
+    }
+
+    .legal-content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-white, #FFFFFF);
+      margin: 28px 0 12px;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legal-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #E2E4EE;
+      margin: 18px 0 8px;
+    }
+
+    .legal-content p {
+      font-size: 14px;
+      color: #C0C5D6;
+      line-height: 1.7;
+      margin: 0 0 14px;
+    }
+
+    .legal-content ul {
+      margin: 0 0 16px;
+      padding-left: 24px;
+      color: #C0C5D6;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .legal-content li {
+      margin-bottom: 6px;
+    }
+
+    .legal-content strong {
+      color: var(--text-white, #FFFFFF);
+    }
+
+    .legal-callout {
+      background-color: rgba(123, 114, 224, 0.08);
+      border-left: 3px solid var(--color-work, #7B72E0);
+      border-radius: 0 var(--radius-sm, 8px) var(--radius-sm, 8px) 0;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 13.5px;
+      color: #D2D5E6;
+    }
+
+    .legal-callout p {
+      margin: 0;
+      font-size: 13.5px;
+    }
+
+    .legal-footer-nav {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle, #2A2B36);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .legal-footer-nav a {
+      color: var(--color-task-card, #8FB0F7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .legal-footer-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border-subtle, #2A2B36);
+      padding: 24px 20px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(163, 168, 184, 0.6);
+      background-color: var(--bg-surface, #1E1F25);
+    }
+  </style>
+</head>
+<body class="dark-theme legal-page">
+
+  <!-- Top Navigation Header -->
+  <nav class="legal-nav" aria-label="Main Navigation">
+    <div class="legal-nav-inner">
+      <a href="/" class="brand-link" aria-label="TaskFlow Home">
+        <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="100" height="100" rx="25" fill="#7B72E0"/>
+          <path d="M 23 48 L 41 68 L 81 27" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 24 78 Q 36 86 52 79 T 80 77" stroke="#C5BFF5" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.3px;">
+          Task<span style="color: var(--color-task-card, #8FB0F7);">Flow</span>
+        </span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="/login" class="btn-nav-back">
+          <span>Sign In / Open App</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Legal Container -->
+  <main class="legal-container">
+    <article class="legal-card">
+
+      <header class="legal-header">
+        <span class="legal-badge">Policy & Compliance</span>
+        <h1 class="legal-title">Privacy Policy</h1>
+        <p class="legal-subtitle">Effective Date: October 19, 2026 &bull; Application: TaskFlow</p>
+      </header>
+
+      <div class="legal-content">
+
+        <p>
+          Welcome to <strong>TaskFlow</strong>. Your privacy and the confidentiality of your personal tasks are fundamental to how this application is designed and operated. This Privacy Policy explains what information TaskFlow collects, how that information is used, stored, and protected, and your rights regarding your data.
+        </p>
+
+        <div class="legal-callout">
+          <p>
+            <strong>Summary:</strong> TaskFlow collects only the minimal profile data required for Google authentication and the task records you enter. We do not sell your personal data, do not serve advertisements, do not employ third-party behavioral trackers, and isolate your tasks so only you can access them.
+          </p>
+        </div>
+
+        <h2>1. Information We Collect</h2>
+        <p>
+          TaskFlow collects information in two categories: account identification data provided via Google OAuth 2.0, and task content entered directly by you into the task manager.
+        </p>
+
+        <h3>A. Google Account Information (Authentication)</h3>
+        <p>
+          TaskFlow uses Google Sign-In (OAuth 2.0) to authenticate users securely without creating or storing custom passwords. When you authorize TaskFlow via Google, we request the standard <code>profile</code> and <code>email</code> scopes and collect:
+        </p>
+        <ul>
+          <li><strong>Google Account Identifier (<code>googleId</code>)</strong>: A unique numerical ID provided by Google to distinguish your account.</li>
+          <li><strong>Email Address (<code>email</code>)</strong>: Your primary Google account email, used to identify your account and associate your private tasks.</li>
+          <li><strong>Display Name (<code>name</code>)</strong>: Your name as registered with Google, used to personalize greetings in the interface (e.g., "Hi, Your Name 👋") and profile badges. You can also customize your display name at any time in the app.</li>
+          <li><strong>Profile Picture URL (<code>picture</code>)</strong>: A link to your public Google account avatar image, used exclusively to display your avatar circle in the navigation bar and profile modal.</li>
+        </ul>
+
+        <h3>B. Task and Productivity Data</h3>
+        <p>
+          When you use TaskFlow, we collect and store the task information you directly submit:
+        </p>
+        <ul>
+          <li><strong>Task Titles</strong>: The text description of the to-do item (up to 250 characters).</li>
+          <li><strong>Categories</strong>: The organizational tag assigned to the task (Personal, Work, Learning, or Shopping).</li>
+          <li><strong>Due Dates</strong>: The scheduled calendar date for the task (YYYY-MM-DD format).</li>
+          <li><strong>Priority / Importance</strong>: Whether the task has been starred as important.</li>
+          <li><strong>Completion Status</strong>: Whether the task has been marked completed or active.</li>
+          <li><strong>Timestamps</strong>: Date and time when the task was created or last updated.</li>
+        </ul>
+
+        <h3>C. Session and Device Cookies</h3>
+        <p>
+          TaskFlow uses an essential HTTP session cookie (<code>connect.sid</code>) to maintain your authenticated state across page requests. This cookie is:
+        </p>
+        <ul>
+          <li>Configured with <code>httpOnly: true</code> to prevent unauthorized script access (XSS mitigation).</li>
+          <li>Configured with <code>secure: true</code> in production environments so it is only transmitted over encrypted HTTPS connections.</li>
+          <li>Configured with a 14-day expiration time and persisted server-side in our database session store.</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>
+          All collected information is used solely to provide and operate the TaskFlow service:
+        </p>
+        <ul>
+          <li><strong>Authentication & Access Control</strong>: Verifying your identity upon sign-in and maintaining your secure session.</li>
+          <li><strong>Data Isolation & Privacy</strong>: Ensuring that every task query is strictly bounded by your user ID (<code>userId: req.user._id</code>). No user can read, modify, or delete another user's tasks.</li>
+          <li><strong>Productivity Metrics & Views</strong>: Computing completion metrics (e.g., "Today's Progress"), displaying upcoming tasks on the interactive calendar, and filtering smart lists (My Day, Upcoming, Important).</li>
+          <li><strong>Interface Personalization</strong>: Displaying your greeting, profile avatar, and preferred display name.</li>
+        </ul>
+
+        <h2>3. How Your Information Is Stored and Protected</h2>
+        <p>
+          We implement technical safeguards to protect your personal information and task content:
+        </p>
+        <ul>
+          <li><strong>Database Security</strong>: Data is stored in a managed MongoDB Atlas cloud cluster with automated access control, network isolation, and encryption at rest.</li>
+          <li><strong>Encryption in Transit</strong>: All communications between your browser, our application servers, and the database are encrypted using modern Transport Layer Security (TLS/HTTPS).</li>
+          <li><strong>Server-Side Authorization</strong>: All API endpoints (<code>/api/todos/*</code> and <code>/api/auth/*</code>) require active session authentication and enforce strict ownership verification on every database read, create, update, and delete operation.</li>
+        </ul>
+
+        <h2>4. Data Sharing and Third-Party Services</h2>
+        <p>
+          <strong>We do not sell, rent, monetize, or trade your personal information or task data to third parties, advertising networks, or data brokers.</strong>
+        </p>
+        <p>
+          TaskFlow shares data only with the essential infrastructure service providers necessary to host and deliver the application:
+        </p>
+        <ul>
+          <li><strong>Google LLC (Google Identity Services)</strong>: Provides OAuth 2.0 authentication. TaskFlow's use and transfer to any other app of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" style="color: var(--color-task-card, #8FB0F7);">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
+          <li><strong>MongoDB, Inc. (MongoDB Atlas)</strong>: Hosts the managed cloud database storing user account profiles, session tokens, and task records.</li>
+          <li><strong>Vercel, Inc.</strong>: Hosts the serverless compute infrastructure running the TaskFlow web application.</li>
+        </ul>
+
+        <h2>5. Data Retention and Deletion</h2>
+        <p>
+          You have full control over your data in TaskFlow:
+        </p>
+        <ul>
+          <li><strong>Deleting Individual Tasks</strong>: You can delete any task at any time by clicking the trash icon next to the task. Deletion is immediate and permanent from the database.</li>
+          <li><strong>Clearing Completed Tasks</strong>: Clicking "Clear Completed" permanently removes all completed tasks associated with your account.</li>
+          <li><strong>Session Termination</strong>: Clicking "Sign Out" immediately destroys your server-side session and invalidates the session cookie.</li>
+          <li><strong>Complete Account and Data Deletion</strong>: If you wish to permanently delete your entire user profile and all associated tasks from MongoDB, you can request account deletion by contacting us at the contact information below. All data will be purged within 7 business days.</li>
+        </ul>
+
+        <h2>6. Children's Privacy</h2>
+        <p>
+          TaskFlow is a general-audience productivity tool and is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13.
+        </p>
+
+        <h2>7. Changes to This Privacy Policy</h2>
+        <p>
+          We may update this Privacy Policy periodically to reflect service enhancements or legal requirements. When updates occur, the "Effective Date" at the top of this page will be updated. We encourage you to review this page periodically.
+        </p>
+
+        <h2>8. Contact Us</h2>
+        <p>
+          If you have questions, concerns, or requests regarding this Privacy Policy, your personal data, or account deletion, please open an issue or contact the project maintainer via the application repository or by emailing the project contact associated with your TaskFlow deployment.
+        </p>
+
+      </div>
+
+      <footer class="legal-footer-nav">
+        <div>
+          <span>Related Document: </span>
+          <a href="/terms">Terms of Service &rarr;</a>
+        </div>
+        <div>
+          <a href="/login">&larr; Return to Sign In</a>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    TaskFlow &bull; Private Task Manager &bull; <a href="/privacy" style="color: inherit; text-decoration: none;">Privacy</a> &bull; <a href="/terms" style="color: inherit; text-decoration: none;">Terms</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Terms of Service — TaskFlow</title>
+  <link rel="icon" type="image/svg+xml" href="logo-tile.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.legal-page {
+      background-color: var(--bg-main, #121212);
+      color: var(--text-white, #FFFFFF);
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      padding: 0;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .legal-nav {
+      background-color: var(--bg-surface, #1E1F25);
+      border-bottom: 1px solid var(--border-subtle, #2A2B36);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+
+    .legal-nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background-color: var(--bg-surface-elevated, #242630);
+      border: 1px solid var(--border-subtle, #2A2B36);
+      border-radius: var(--radius-sm, 8px);
+      color: var(--text-white, #FFFFFF);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav-back:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-task-card, #8FB0F7);
+      color: var(--color-task-card, #8FB0F7);
+    }
+
+    .legal-container {
+      max-width: 820px;
+      margin: 36px auto 60px;
+      padding: 0 20px;
+      flex: 1;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .legal-card {
+      background-color: var(--bg-surface, #1E1F25);
+      border: 1px solid var(--border-subtle, #2A2B36);
+      border-radius: var(--radius-xl, 24px);
+      padding: 40px 36px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (max-width: 600px) {
+      .legal-card {
+        padding: 24px 20px;
+        border-radius: var(--radius-lg, 16px);
+      }
+      .legal-container {
+        margin: 20px auto 40px;
+      }
+    }
+
+    .legal-header {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border-subtle, #2A2B36);
+      padding-bottom: 24px;
+    }
+
+    .legal-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background-color: rgba(127, 166, 245, 0.15);
+      color: var(--color-personal, #7FA6F5);
+      border: 1px solid rgba(127, 166, 245, 0.3);
+      border-radius: var(--radius-full, 9999px);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .legal-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin: 0 0 8px;
+      color: var(--text-white, #FFFFFF);
+    }
+
+    .legal-subtitle {
+      font-size: 14px;
+      color: var(--text-muted, #A3A8B8);
+      margin: 0;
+    }
+
+    .legal-content h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-white, #FFFFFF);
+      margin: 28px 0 12px;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legal-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #E2E4EE;
+      margin: 18px 0 8px;
+    }
+
+    .legal-content p {
+      font-size: 14px;
+      color: #C0C5D6;
+      line-height: 1.7;
+      margin: 0 0 14px;
+    }
+
+    .legal-content ul {
+      margin: 0 0 16px;
+      padding-left: 24px;
+      color: #C0C5D6;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .legal-content li {
+      margin-bottom: 6px;
+    }
+
+    .legal-content strong {
+      color: var(--text-white, #FFFFFF);
+    }
+
+    .legal-callout {
+      background-color: rgba(127, 166, 245, 0.08);
+      border-left: 3px solid var(--color-personal, #7FA6F5);
+      border-radius: 0 var(--radius-sm, 8px) var(--radius-sm, 8px) 0;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 13.5px;
+      color: #D2D5E6;
+    }
+
+    .legal-callout p {
+      margin: 0;
+      font-size: 13.5px;
+    }
+
+    .legal-footer-nav {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle, #2A2B36);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .legal-footer-nav a {
+      color: var(--color-task-card, #8FB0F7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .legal-footer-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border-subtle, #2A2B36);
+      padding: 24px 20px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(163, 168, 184, 0.6);
+      background-color: var(--bg-surface, #1E1F25);
+    }
+  </style>
+</head>
+<body class="dark-theme legal-page">
+
+  <!-- Top Navigation Header -->
+  <nav class="legal-nav" aria-label="Main Navigation">
+    <div class="legal-nav-inner">
+      <a href="/" class="brand-link" aria-label="TaskFlow Home">
+        <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="100" height="100" rx="25" fill="#7B72E0"/>
+          <path d="M 23 48 L 41 68 L 81 27" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 24 78 Q 36 86 52 79 T 80 77" stroke="#C5BFF5" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.3px;">
+          Task<span style="color: var(--color-task-card, #8FB0F7);">Flow</span>
+        </span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="/login" class="btn-nav-back">
+          <span>Sign In / Open App</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Legal Container -->
+  <main class="legal-container">
+    <article class="legal-card">
+
+      <header class="legal-header">
+        <span class="legal-badge">Terms & Agreement</span>
+        <h1 class="legal-title">Terms of Service</h1>
+        <p class="legal-subtitle">Effective Date: October 19, 2026 &bull; Application: TaskFlow</p>
+      </header>
+
+      <div class="legal-content">
+
+        <p>
+          Welcome to <strong>TaskFlow</strong>. Please read these Terms of Service (&ldquo;Terms&rdquo;) carefully before using the TaskFlow web application (the &ldquo;Service&rdquo;). By signing in with your Google account, accessing, or using TaskFlow, you agree to be bound by these Terms and our <a href="/privacy" style="color: var(--color-task-card, #8FB0F7);">Privacy Policy</a>. If you do not agree to these Terms, please do not use the Service.
+        </p>
+
+        <div class="legal-callout">
+          <p>
+            <strong>Summary:</strong> TaskFlow is a personal productivity web application designed to help you organize daily tasks. You retain complete ownership of the tasks and data you enter. We do not sell your data, monetize your tasks, or display third-party advertisements.
+          </p>
+        </div>
+
+        <h2>1. User Accounts & Google Authentication</h2>
+        <p>
+          To access the features of TaskFlow, you must authenticate using a valid Google account via Google Sign-In (OAuth 2.0). By authenticating, you agree that:
+        </p>
+        <ul>
+          <li>You are at least 13 years of age (or the minimum legal age required in your jurisdiction to use online services).</li>
+          <li>You are the authorized owner of the Google account used to access the Service.</li>
+          <li>You are responsible for maintaining the confidentiality and security of your Google account credentials and devices. Any activity conducted under your authenticated session is your responsibility.</li>
+          <li>You will notify us immediately if you discover any unauthorized access or breach of security affecting your account.</li>
+        </ul>
+
+        <h2>2. User Content & Task Ownership</h2>
+        <p>
+          You retain full, exclusive ownership of and intellectual property rights in any text, tasks, titles, due dates, tags, and other data (&ldquo;User Content&rdquo;) that you submit or manage within TaskFlow.
+        </p>
+        <ul>
+          <li><strong>Limited License to Operate:</strong> By entering User Content into TaskFlow, you grant TaskFlow solely the technical license necessary to store, parse, index, synchronize, and display that content back to you on your authenticated devices.</li>
+          <li><strong>No Monetization of Content:</strong> We do not claim ownership of your tasks, do not license your task content to third parties, and do not use your task content to train machine learning models or sell advertising.</li>
+          <li><strong>Content Responsibility:</strong> You are solely responsible for the content of your tasks and ensure that your content does not violate any applicable law or third-party rights.</li>
+        </ul>
+
+        <h2>3. Acceptable Use Policy</h2>
+        <p>
+          TaskFlow is intended for lawful, personal productivity management. When accessing or using the Service, you agree not to:
+        </p>
+        <ul>
+          <li>Use the Service for any unlawful, fraudulent, defamatory, or abusive purpose.</li>
+          <li>Attempt to probe, scan, or compromise the vulnerability of any system or network hosting TaskFlow.</li>
+          <li>Attempt to bypass authentication, session validation, or access control mechanisms to read or modify another user&rsquo;s tasks or data.</li>
+          <li>Launch automated scripts, crawlers, spiders, or denial-of-service attacks intended to degrade, overburden, or impair the performance or availability of the Service.</li>
+          <li>Reverse engineer, decompile, or disassemble the Service, except as permitted under applicable open source licensing or governing law.</li>
+        </ul>
+
+        <h2>4. Data Isolation & Security</h2>
+        <p>
+          TaskFlow enforces strict server-side authorization on every database operation. Every task query is bounded by the authenticated user&rsquo;s unique identifier (<code>userId: req.user._id</code>), ensuring data isolation between different accounts.
+        </p>
+        <p>
+          While we implement industry-standard safeguards (TLS/HTTPS in transit, MongoDB Atlas access control and encryption at rest, secure HTTP-only cookies), no method of electronic storage or transmission is 100% impenetrable. We encourage you to practice good security habits, including securing your Google account and using device lock screens.
+        </p>
+
+        <h2>5. Service Availability & Modifications</h2>
+        <p>
+          TaskFlow is provided on an <strong>&ldquo;AS IS&rdquo;</strong> and <strong>&ldquo;AS AVAILABLE&rdquo;</strong> basis without warranties of any kind, whether express or implied.
+        </p>
+        <ul>
+          <li>We strive to maintain high availability and reliability through managed cloud infrastructure (Vercel and MongoDB Atlas), but we do not guarantee uninterrupted, continuous, or error-free operation.</li>
+          <li>The Service may experience temporary maintenance windows, downtime, or performance variations from time to time.</li>
+          <li>We reserve the right to modify, update, enhance, or discontinue any feature of TaskFlow at any time without prior liability.</li>
+        </ul>
+
+        <h2>6. Account Termination & Data Deletion</h2>
+        <p>
+          You are free to stop using TaskFlow at any time:
+        </p>
+        <ul>
+          <li><strong>Immediate Task Deletion:</strong> You can delete any individual task or all completed tasks directly within the app interface at any time. These deletions are immediately and permanently executed in the database.</li>
+          <li><strong>Session Termination:</strong> You can end your authenticated session at any time by clicking &ldquo;Sign Out&rdquo;, which destroys your server-side session and invalidates your session cookie.</li>
+          <li><strong>Full Account Deletion:</strong> If you wish to permanently delete your user profile and all associated data from MongoDB, you may request complete account deletion by contacting the project maintainer. Requests are processed within 7 business days.</li>
+          <li><strong>Termination by Maintainer:</strong> We reserve the right to suspend or terminate access for any account that violates these Terms or engages in abusive, harmful, or fraudulent activities.</li>
+        </ul>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>
+          To the maximum extent permitted by applicable law, in no event shall TaskFlow, its developers, contributors, or maintainers be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation loss of data, loss of profits, loss of goodwill, or business interruption, arising out of or in connection with your access to, use of, or inability to use the Service.
+        </p>
+
+        <h2>8. Changes to These Terms</h2>
+        <p>
+          We may revise these Terms of Service from time to time. The revised version will be indicated by the &ldquo;Effective Date&rdquo; at the top of this page. Your continued use of TaskFlow following any changes constitutes your acceptance of the updated Terms.
+        </p>
+
+        <h2>9. Contact Us</h2>
+        <p>
+          If you have questions, inquiries, or feedback regarding these Terms of Service or TaskFlow, please reach out via the application repository or contact the project maintainer at the contact email configured for your deployment.
+        </p>
+
+      </div>
+
+      <footer class="legal-footer-nav">
+        <div>
+          <span>Related Document: </span>
+          <a href="/privacy">Privacy Policy &rarr;</a>
+        </div>
+        <div>
+          <a href="/login">&larr; Return to Sign In</a>
+        </div>
+      </footer>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    TaskFlow &bull; Private Task Manager &bull; <a href="/privacy" style="color: inherit; text-decoration: none;">Privacy</a> &bull; <a href="/terms" style="color: inherit; text-decoration: none;">Terms</a>
+  </footer>
+
+</body>
+</html>

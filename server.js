@@ -470,6 +470,15 @@ app.get('/login', redirectIfAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// Public Legal Pages (Google OAuth compliance, publicly accessible without login)
+app.get('/privacy', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'privacy.html'));
+});
+
+app.get('/terms', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'terms.html'));
+});
+
 // App Dashboard (Protected)
 app.get('/', requireAuthPage, async (req, res) => {
   const indexPath = path.join(__dirname, 'public', 'index.html');
