@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>TaskFlow — Stay in flow</title>
+  <link rel="icon" type="image/svg+xml" href="logo-tile.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+  <!-- =========================================================
+       1. AUTH / LOGIN VIEW (Visible when logged out)
+       ========================================================= -->
+  <section class="auth-view" id="authSection" style="display: none;">
+    <div class="auth-card">
+      <div class="auth-branding">
+        <div class="brand-logo-lockup auth-logo-lockup">
+          <svg class="brand-tile-icon auth-tile-icon" width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="100" height="100" rx="25" fill="#7B72E0"/>
+            <path d="M 23 48 L 41 68 L 81 27" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 24 78 Q 36 86 52 79 T 80 77" stroke="#C5BFF5" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <span class="brand-wordmark auth-wordmark">
+            <span class="wordmark-task">Task</span><span class="wordmark-flow">Flow</span>
+          </span>
+        </div>
+        <p class="brand-tagline auth-tagline">Stay in flow.</p>
+      </div>
+      <p class="auth-subtitle">Welcome to your dark-themed task manager. Sign in to sync your tasks across mobile and desktop.</p>
+
+      <!-- Google Sign-in -->
+      <button class="btn-google" id="googleSignInBtn" type="button">
+        <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="auth-divider">
+        <span>or sign in with email</span>
+      </div>
+
+      <!-- Email Sign-in Form -->
+      <form class="auth-form" id="emailLoginForm">
+        <div class="form-group">
+          <label for="authEmailInput">Gmail / Email address</label>
+          <input 
+            type="email" 
+            id="authEmailInput" 
+            placeholder="e.g. aryaman@gmail.com" 
+            required
+            autocomplete="email"
+          />
+        </div>
+        <button type="submit" class="btn-primary-auth" id="emailSubmitBtn">
+          <span>Continue to TaskFlow</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+
+      <p class="auth-privacy-note">🔒 Private and isolated to your personal account.</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       2. ONBOARDING / PROFILE MODAL
+       ========================================================= -->
+  <div class="modal-overlay" id="nameModal" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h2 class="modal-title" style="margin: 0; font-size: 1.25rem;">Your Account</h2>
+        <button class="btn-close" id="closeNameModalBtn" aria-label="Close dialog" type="button" style="background:none; border:none; color:var(--text-muted); cursor:pointer;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-profile-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: var(--radius-md);">
+        <div class="avatar-circle" id="modalUserAvatar" style="width: 48px; height: 48px; font-size: 1.2rem;"></div>
+        <div style="flex: 1; min-width: 0;">
+          <div id="modalUserEmail" style="font-size: 0.82rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></div>
+          <div style="font-size: 0.75rem; color: var(--color-task-card); margin-top: 2px;">Signed in with Google</div>
+        </div>
+      </div>
+      <form id="setNameForm">
+        <div class="form-group">
+          <label for="userNameInput" style="display: block; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;">Display Name</label>
+          <input 
+            type="text" 
+            id="userNameInput" 
+            placeholder="Your name" 
+            maxlength="40" 
+            required 
+            autocomplete="name"
+          />
+        </div>
+        <div class="modal-actions" style="display: flex; flex-direction: column; gap: 10px; margin-top: 16px;">
+          <button type="submit" class="btn-submit modal-btn" style="width: 100%;">
+            <span>Save Name</span>
+          </button>
+          <button type="button" class="btn-logout-sidebar" id="mobileLogoutBtn" style="width: 100%; justify-content: center; background: rgba(232, 160, 160, 0.1); border-color: rgba(232, 160, 160, 0.3); color: #E8A0A0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       3. ADD TASK MODAL (Mobile Floating Action / Global Dialog)
+       ========================================================= -->
+  <div class="modal-overlay" id="addTaskModal" style="display: none;">
+    <div class="modal-card add-task-modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">New Task</h2>
+        <button class="btn-close" id="closeAddTaskModalBtn" aria-label="Close dialog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="modalTaskForm">
+        <div class="form-group">
+          <label for="modalTaskInput">Task Title</label>
+          <input 
+            type="text" 
+            id="modalTaskInput" 
+            placeholder="What do you need to get done?" 
+            maxlength="250" 
+            required 
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <div class="category-radio-group">
+            <label class="category-chip chip-personal">
+              <input type="radio" name="modalCategory" value="Personal" checked>
+              <span class="chip-dot dot-personal"></span>
+              <span>Personal</span>
+            </label>
+            <label class="category-chip chip-work">
+              <input type="radio" name="modalCategory" value="Work">
+              <span class="chip-dot dot-work"></span>
+              <span>Work</span>
+            </label>
+            <label class="category-chip chip-learning">
+              <input type="radio" name="modalCategory" value="Learning">
+              <span class="chip-dot dot-learning"></span>
+              <span>Learning</span>
+            </label>
+            <label class="category-chip chip-shopping">
+              <input type="radio" name="modalCategory" value="Shopping">
+              <span class="chip-dot dot-shopping"></span>
+              <span>Shopping</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-1">
+            <label for="modalDueDateInput">Due Date</label>
+            <input type="date" id="modalDueDateInput" class="date-picker-input">
+          </div>
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <label class="important-toggle-label">
+              <input type="checkbox" id="modalImportantInput">
+              <span class="star-icon">★</span>
+              <span>Important</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn-submit modal-btn">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       4. MAIN APP LAYOUT (Responsive Desktop / Tablet / Mobile)
+       ========================================================= -->
+  <div class="app-layout" id="dashboardSection" style="display: none;">
+
+    <!-- Mobile Top Header Bar (< 1100px) -->
+    <header class="mobile-header">
+      <div class="mobile-logo-wrap">
+        <a href="/" class="brand-logo-lockup mobile-logo-lockup" aria-label="TaskFlow Home">
+          <svg class="brand-tile-icon mobile-tile-icon" width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="100" height="100" rx="25" fill="#7B72E0"/>
+            <path d="M 23 48 L 41 68 L 81 27" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 24 78 Q 36 86 52 79 T 80 77" stroke="#C5BFF5" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <span class="brand-wordmark mobile-wordmark">
+            <span class="wordmark-task">Task</span><span class="wordmark-flow">Flow</span>
+          </span>
+        </a>
+      </div>
+      <div class="mobile-header-right">
+        <div class="user-avatar-badge" id="mobileUserAvatar" title="Your account">A</div>
+      </div>
+    </header>
+
+    <!-- LEFT SIDEBAR (Desktop ~260px) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-brand">
+          <div class="brand-logo-lockup sidebar-logo-lockup">
+            <svg class="brand-tile-icon sidebar-tile-icon" width="56" height="56" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="100" height="100" rx="25" fill="#7B72E0"/>
+              <path d="M 23 48 L 41 68 L 81 27" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 24 78 Q 36 86 52 79 T 80 77" stroke="#C5BFF5" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <span class="brand-wordmark sidebar-wordmark">
+              <span class="wordmark-task">Task</span><span class="wordmark-flow">Flow</span>
+            </span>
+          </div>
+          <p class="brand-tagline">Stay in flow.</p>
+        </div>
+
+        <!-- Smart Lists Nav -->
+        <nav class="sidebar-section" aria-label="Smart Lists">
+          <div class="sidebar-section-title">Smart Lists</div>
+          <ul class="nav-list">
+            <li>
+              <button class="nav-item active" data-view="myday" id="navMyDay">
+                <span class="nav-icon sun-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                </span>
+                <span class="nav-label">My Day</span>
+                <span class="nav-count" id="countNavMyDay">0</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item" data-view="upcoming" id="navUpcoming">
+                <span class="nav-icon cal-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </span>
+                <span class="nav-label">Upcoming</span>
+                <span class="nav-count" id="countNavUpcoming">0</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item" data-view="important" id="navImportant">
+                <span class="nav-icon star-icon-nav">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </span>
+                <span class="nav-label">Important</span>
+                <span class="nav-count" id="countNavImportant">0</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Categories Nav -->
+        <nav class="sidebar-section" aria-label="Categories">
+          <div class="sidebar-section-title">Categories</div>
+          <ul class="nav-list">
+            <li>
+              <button class="nav-item category-nav-item" data-category="Personal">
+                <span class="cat-dot dot-personal"></span>
+                <span class="nav-label">Personal</span>
+                <span class="nav-count" id="countNavPersonal">0</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item category-nav-item" data-category="Work">
+                <span class="cat-dot dot-work"></span>
+                <span class="nav-label">Work</span>
+                <span class="nav-count" id="countNavWork">0</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item category-nav-item" data-category="Learning">
+                <span class="cat-dot dot-learning"></span>
+                <span class="nav-label">Learning</span>
+                <span class="nav-count" id="countNavLearning">0</span>
+              </button>
+            </li>
+            <li>
+              <button class="nav-item category-nav-item" data-category="Shopping">
+                <span class="cat-dot dot-shopping"></span>
+                <span class="nav-label">Shopping</span>
+                <span class="nav-count" id="countNavShopping">0</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- User Profile at bottom of sidebar -->
+      <div class="sidebar-user">
+        <div class="user-info-row">
+          <div class="avatar-circle" id="sidebarAvatar"></div>
+          <div class="user-meta">
+            <span class="user-name" id="sidebarUserName"></span>
+            <span class="user-status-text">Google Account</span>
+          </div>
+          <button class="btn-sidebar-edit" id="editNameBtn" title="Edit name" aria-label="Edit name">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </button>
+        </div>
+        <button class="btn-logout-sidebar" id="logoutBtn" title="Sign out">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CENTER / MAIN CONTENT AREA -->
+    <main class="main-content" id="mainContent">
+
+      <!-- MOBILE / TABLET OVERVIEW CARDS (Visible on mobile/tablet view) -->
+      <section class="mobile-overview" id="mobileOverviewSection">
+        
+        <!-- Greeting Header -->
+        <div class="greeting-header">
+          <h1 class="greeting-title">
+            Hi, <span id="userNameGreeting" class="editable-name" title="Click to edit name"></span> 👋
+          </h1>
+          <p class="greeting-date" id="headerDateDisplay">Monday, October 19</p>
+        </div>
+
+        <!-- 3 Smart-List Cards (#4A5D8A) -->
+        <div class="smart-cards-grid">
+          <button class="smart-card" data-view="myday">
+            <div class="smart-card-top">
+              <div class="smart-icon-wrap sun-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+              </div>
+              <span class="smart-count-pill" id="smartCountMyDay">0</span>
+            </div>
+            <div class="smart-card-title">My Day</div>
+          </button>
+
+          <button class="smart-card" data-view="upcoming">
+            <div class="smart-card-top">
+              <div class="smart-icon-wrap cal-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+              <span class="smart-count-pill" id="smartCountUpcoming">0</span>
+            </div>
+            <div class="smart-card-title">Upcoming</div>
+          </button>
+
+          <button class="smart-card" data-view="important">
+            <div class="smart-card-top">
+              <div class="smart-icon-wrap star-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <span class="smart-count-pill" id="smartCountImportant">0</span>
+            </div>
+            <div class="smart-card-title">Important</div>
+          </button>
+        </div>
+
+        <!-- 4 Category Tiles (Personal, Work, Learning, Shopping) -->
+        <div class="section-heading-row">
+          <h2 class="sub-heading">Categories</h2>
+        </div>
+        <div class="category-tiles-grid">
+          <!-- Personal #7FA6F5 -->
+          <button class="category-tile tile-personal" data-category="Personal">
+            <div class="tile-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="tile-info">
+              <span class="tile-name">Personal</span>
+              <span class="tile-count" id="tileCountPersonal">0 tasks</span>
+            </div>
+          </button>
+
+          <!-- Work #7B72E0 -->
+          <button class="category-tile tile-work" data-category="Work">
+            <div class="tile-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <div class="tile-info">
+              <span class="tile-name">Work</span>
+              <span class="tile-count" id="tileCountWork">0 tasks</span>
+            </div>
+          </button>
+
+          <!-- Learning #B567C9 -->
+          <button class="category-tile tile-learning" data-category="Learning">
+            <div class="tile-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <div class="tile-info">
+              <span class="tile-name">Learning</span>
+              <span class="tile-count" id="tileCountLearning">0 tasks</span>
+            </div>
+          </button>
+
+          <!-- Shopping #E8A0A0 -->
+          <button class="category-tile tile-shopping" data-category="Shopping">
+            <div class="tile-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </div>
+            <div class="tile-info">
+              <span class="tile-name">Shopping</span>
+              <span class="tile-count" id="tileCountShopping">0 tasks</span>
+            </div>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- UPCOMING HORIZONTAL WEEK STRIP (When in Upcoming View / Mobile) -->
+      <section class="week-strip-section" id="weekStripSection" style="display: none;">
+        <div class="week-strip-header">
+          <span class="week-month-label" id="weekMonthLabel">October 2026</span>
+          <div class="week-nav-arrows">
+            <button class="btn-arrow" id="prevWeekBtn" aria-label="Previous week">‹</button>
+            <button class="btn-arrow" id="nextWeekBtn" aria-label="Next week">›</button>
+          </div>
+        </div>
+        <div class="week-strip" id="weekStrip">
+          <!-- Populated by JS: Mon 19, Tue 20... -->
+        </div>
+      </section>
+
+      <!-- VIEW HEADER (Title, Filter Tabs, Add Task Controls) -->
+      <section class="view-header-section">
+        <div class="view-title-row">
+          <div class="view-title-wrap">
+            <div class="view-subtitle" id="viewSubtitle">SMART LIST</div>
+            <h1 class="view-title" id="viewTitle">My Day</h1>
+          </div>
+          <button class="btn-clear-completed" id="clearCompletedBtn" title="Clear completed tasks">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span>Clear Completed</span>
+          </button>
+        </div>
+
+        <!-- Inline Desktop Add Task Form -->
+        <form class="desktop-add-task-form" id="desktopTaskForm">
+          <div class="input-wrap">
+            <input 
+              type="text" 
+              id="desktopTaskInput" 
+              placeholder="Add a new task in My Day..." 
+              maxlength="250" 
+              required
+              autocomplete="off"
+            />
+            <div class="input-actions-row">
+              <div class="quick-category-picker">
+                <select id="desktopCategorySelect" class="styled-select" aria-label="Select Category">
+                  <option value="Personal">Personal</option>
+                  <option value="Work">Work</option>
+                  <option value="Learning">Learning</option>
+                  <option value="Shopping">Shopping</option>
+                </select>
+              </div>
+              <input type="date" id="desktopDueDateInput" class="styled-date-input" aria-label="Due Date">
+              <button type="button" class="btn-star-toggle" id="desktopImportantToggle" title="Mark as Important" aria-label="Mark as Important">
+                ★
+              </button>
+              <button type="submit" class="btn-desktop-add" id="desktopAddBtn">
+                <span>Add Task</span>
+                <kbd>↵</kbd>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Filter Tabs: All, Active, Completed -->
+        <div class="filter-toolbar">
+          <div class="filter-pills" role="tablist">
+            <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
+              All <span class="filter-badge" id="filterCountAll">0</span>
+            </button>
+            <button class="filter-pill" data-filter="active" role="tab" aria-selected="false">
+              Active <span class="filter-badge" id="filterCountActive">0</span>
+            </button>
+            <button class="filter-pill" data-filter="completed" role="tab" aria-selected="false">
+              Completed <span class="filter-badge" id="filterCountCompleted">0</span>
+            </button>
+          </div>
+          <div class="current-filter-info" id="filterStatusText">Showing all tasks</div>
+        </div>
+      </section>
+
+      <!-- MAIN TASK LIST (Task cards in #8FB0F7) -->
+      <section class="task-list-section">
+        <ul class="task-list-grid" id="taskList" aria-live="polite">
+          <!-- Populated by JS -->
+        </ul>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <div class="empty-state-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="empty-state-title" id="emptyTitle">All caught up!</h3>
+          <p class="empty-state-desc" id="emptyDesc">No tasks found in this view. Enjoy your day or add a new task!</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT PANEL (Desktop ~320px) -->
+    <aside class="right-panel" id="rightPanel">
+
+      <!-- Today's Progress Indicator -->
+      <div class="panel-card progress-panel-card">
+        <div class="progress-panel-header">
+          <span class="panel-card-title">Today's Progress</span>
+          <span class="progress-percentage-text" id="panelPercentText">0%</span>
+        </div>
+        <div class="panel-progress-track">
+          <div class="panel-progress-fill" id="panelProgressFill" style="width: 0%;"></div>
+        </div>
+        <div class="panel-progress-sub" id="panelProgressSub">0 of 0 tasks completed</div>
+      </div>
+
+      <!-- Month Calendar Widget -->
+      <div class="panel-card calendar-card">
+        <div class="calendar-widget-header">
+          <h3 class="calendar-month-year" id="calMonthYear">October 2026</h3>
+          <div class="cal-nav-buttons">
+            <button class="btn-cal-nav" id="calPrevMonthBtn" aria-label="Previous month">‹</button>
+            <button class="btn-cal-nav" id="calNextMonthBtn" aria-label="Next month">›</button>
+          </div>
+        </div>
+
+        <div class="calendar-weekdays">
+          <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+        </div>
+
+        <div class="calendar-days-grid" id="calendarDaysGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Day Tasks Mini Panel -->
+      <div class="panel-card day-tasks-card">
+        <div class="day-tasks-header">
+          <span class="panel-card-title" id="selectedDayLabel">Tasks for Today</span>
+          <span class="day-tasks-count" id="selectedDayCount">0</span>
+        </div>
+        <ul class="mini-task-list" id="miniTaskList">
+          <!-- Populated by JS -->
+        </ul>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- =========================================================
+       5. MOBILE FLOATING ACTION BUTTON (+) & BOTTOM TAB BAR
+       ========================================================= -->
+  <button class="mobile-fab" id="mobileFabBtn" aria-label="Add new task">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </button>
+
+  <nav class="mobile-bottom-tabs" id="mobileBottomTabs" style="display: none;">
+    <button class="bottom-tab-item active" data-tab="home" id="tabHome">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Home</span>
+    </button>
+    <button class="bottom-tab-item" data-tab="upcoming" id="tabUpcoming">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      <span>Upcoming</span>
+    </button>
+    <button class="bottom-tab-item" data-tab="calendar" id="tabCalendar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <span>Calendar</span>
+    </button>
+    <button class="bottom-tab-item" data-tab="profile" id="tabProfile">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span>Profile</span>
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Sign In — TaskFlow</title>
+  <link rel="icon" type="image/svg+xml" href="logo-tile.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.login-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+      background-color: var(--bg-main, #121212);
+      color: var(--text-white, #FFFFFF);
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .login-card {
+      background-color: var(--bg-surface, #1E1F25);
+      border: 1px solid var(--border-subtle, #2A2B36);
+      border-radius: var(--radius-xl, 24px);
+      padding: 40px 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      text-align: center;
+    }
+
+    .login-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .login-logo-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .login-tile-icon {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+    }
+
+    .login-wordmark {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .login-tagline {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted, #A3A8B8);
+      letter-spacing: 0.2px;
+    }
+
+    .login-header-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-white, #FFFFFF);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .login-header-subtitle {
+      font-size: 14px;
+      color: var(--text-muted, #A3A8B8);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .btn-google-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 20px;
+      background-color: #FFFFFF;
+      color: #1F1F1F;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      border-radius: var(--radius-md, 12px);
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .btn-google-login:hover {
+      background-color: #F2F2F2;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-google-login:active {
+      transform: translateY(0);
+      background-color: #E5E5E5;
+    }
+
+    .google-icon-svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .login-features {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle, #2A2B36);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted, #A3A8B8);
+      line-height: 1.4;
+    }
+
+    .feature-icon {
+      font-size: 14px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    .login-alert {
+      padding: 12px 14px;
+      border-radius: var(--radius-sm, 8px);
+      font-size: 13px;
+      margin-bottom: 20px;
+      display: none;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    .login-alert.error {
+      display: block;
+      background-color: rgba(232, 160, 160, 0.15);
+      border: 1px solid rgba(232, 160, 160, 0.4);
+      color: #F5A3A3;
+    }
+
+    .login-alert.info {
+      display: block;
+      background-color: rgba(127, 166, 245, 0.15);
+      border: 1px solid rgba(127, 166, 245, 0.35);
+      color: #9EC0F8;
+    }
+
+    .login-footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(163, 168, 184, 0.6);
+    }
+  </style>
+</head>
+<body class="dark-theme login-page">
+
+  <div class="login-container">
+    <div class="login-card">
+
+      <!-- Branding Lockup -->
+      <div class="login-brand">
+        <div class="login-logo-lockup">
+          <svg class="login-tile-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TaskFlow Logo">
+            <rect width="100" height="100" rx="25" fill="#7B72E0"/>
+            <path d="M 23 48 L 41 68 L 81 27" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 24 78 Q 36 86 52 79 T 80 77" stroke="#C5BFF5" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          <span class="login-wordmark">
+            <span class="wordmark-task">Task</span><span class="wordmark-flow">Flow</span>
+          </span>
+        </div>
+        <p class="login-tagline">Stay in flow.</p>
+      </div>
+
+      <h1 class="login-header-title">Welcome to TaskFlow</h1>
+      <p class="login-header-subtitle">
+        Sign in to access your private tasks and sync across mobile and desktop.
+      </p>
+
+      <!-- Alert Container -->
+      <div id="loginAlert" class="login-alert"></div>
+
+      <!-- Google Sign In Button -->
+      <a href="/auth/google" class="btn-google-login" id="googleLoginLink" aria-label="Continue with Google">
+        <svg class="google-icon-svg" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <span>Continue with Google</span>
+      </a>
+
+      <!-- Security & Privacy Features -->
+      <div class="login-features">
+        <div class="feature-item">
+          <span class="feature-icon">🔒</span>
+          <span><strong>Private Database:</strong> Your tasks are isolated to your account in MongoDB and never shared.</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🛡️</span>
+          <span><strong>Secure Sessions:</strong> Protected with HTTP-only session cookies and Google OAuth 2.0.</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📱</span>
+          <span><strong>Fully Responsive:</strong> Seamless task management on phone, tablet, and desktop.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="login-footer">
+      TaskFlow &bull; Private Task Manager &bull; Stay in flow.
+    </div>
+  </div>
+
+  <script>
+    // Handle URL error/status parameters
+    const params = new URLSearchParams(window.location.search);
+    const alertEl = document.getElementById('loginAlert');
+    const error = params.get('error');
+    const message = params.get('message');
+
+    if (error === 'auth_failed') {
+      alertEl.textContent = 'Google authentication was cancelled or failed. Please try again.';
+      alertEl.className = 'login-alert error';
+    } else if (error === 'session_expired') {
+      alertEl.textContent = 'Your session has expired. Please sign in with Google to continue.';
+      alertEl.className = 'login-alert info';
+    } else if (error === 'no_credentials') {
+      alertEl.innerHTML = 'Google OAuth credentials are not yet configured in <code>.env</code>. Please set <code>GOOGLE_CLIENT_ID</code> and <code>GOOGLE_CLIENT_SECRET</code>.';
+      alertEl.className = 'login-alert error';
+    } else if (error === 'unauthorized') {
+      alertEl.textContent = 'Please sign in with Google to access your tasks.';
+      alertEl.className = 'login-alert info';
+    } else if (message) {
+      alertEl.textContent = message;
+      alertEl.className = 'login-alert info';
+    }
+  </script>
+</body>
+</html>
