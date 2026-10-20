@@ -121,3 +121,11 @@ cp .env.example .env
 ## License
 
 MIT © [Aryaman Sharma (aryamaxn)](https://github.com/aryamaxn)
+
+## Tech stack
+
+- **Backend:** Node.js, Express
+- **Auth:** Google OAuth 2.0 (Passport.js), sessions stored in MongoDB
+- **Database:** MongoDB Atlas (Mongoose)
+- **Frontend:** HTML, CSS, vanilla JavaScript
+- **Hosting and CI:** Vercel, GitHub Actions
