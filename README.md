@@ -4,7 +4,7 @@ A modern, responsive **Dark Task Manager** web application built with **Node.js*
 
 ---
 
-## 🎨 Theme & Palette
+## Theme & Palette
 
 - **Page Background**: Near-black (`#121212`) with dark surface cards (`#1a1a22` / `#22222d`).
 - **Smart-List Cards**: Muted slate blue (`#4A5D8A`) for *My Day*, *Upcoming*, and *Important*.
@@ -23,7 +23,7 @@ A modern, responsive **Dark Task Manager** web application built with **Node.js*
 
 ---
 
-## 📱 Responsive Layout Architecture
+## Responsive Layout Architecture
 
 - **Mobile (< 768px)**:
   - Single-column flow with zero horizontal scrolling.
@@ -42,7 +42,7 @@ A modern, responsive **Dark Task Manager** web application built with **Node.js*
 
 ---
 
-## 🔐 Authentication & Database Architecture
+## Authentication & Database Architecture
 
 - **Google OAuth 2.0**: Secure authentication via `passport-google-oauth20` and `express-session`.
 - **Private Multi-User MongoDB**:
@@ -54,7 +54,7 @@ A modern, responsive **Dark Task Manager** web application built with **Node.js*
 
 ---
 
-## ⚙️ Environment Configuration
+## Environment Configuration
 
 Copy `.env.example` to `.env` and configure your credentials:
 
@@ -74,7 +74,7 @@ cp .env.example .env
 
 ---
 
-## 🚀 Running the App Locally
+## Running the App Locally
 
 1. Install dependencies:
    ```bash
