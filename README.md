@@ -129,3 +129,7 @@ MIT © [Aryaman Sharma (aryamaxn)](https://github.com/aryamaxn)
 - **Database:** MongoDB Atlas (Mongoose)
 - **Frontend:** HTML, CSS, vanilla JavaScript
 - **Hosting and CI:** Vercel, GitHub Actions
+
+## Author
+
+Built by **Aryaman Sharma**. GitHub: [@aryamaxn](https://github.com/aryamaxn)
