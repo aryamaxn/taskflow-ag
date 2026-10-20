@@ -15,6 +15,16 @@ A modern, responsive **Dark Task Manager** web application built with **Node.js*
 
 ---
 
+## Tech stack
+
+- **Backend:** Node.js, Express
+- **Auth:** Google OAuth 2.0 (Passport.js), sessions stored in MongoDB
+- **Database:** MongoDB Atlas (Mongoose)
+- **Frontend:** HTML, CSS, vanilla JavaScript
+- **Hosting and CI:** Vercel, GitHub Actions
+
+---
+
 ## Theme & Palette
 
 - **Page Background**: Near-black (`#121212`) with dark surface cards (`#1a1a22` / `#22222d`).
@@ -121,15 +131,3 @@ cp .env.example .env
 ## License
 
 MIT © [Aryaman Sharma (aryamaxn)](https://github.com/aryamaxn)
-
-## Tech stack
-
-- **Backend:** Node.js, Express
-- **Auth:** Google OAuth 2.0 (Passport.js), sessions stored in MongoDB
-- **Database:** MongoDB Atlas (Mongoose)
-- **Frontend:** HTML, CSS, vanilla JavaScript
-- **Hosting and CI:** Vercel, GitHub Actions
-
-## Author
-
-Built by **Aryaman Sharma**. GitHub: [@aryamaxn](https://github.com/aryamaxn)
