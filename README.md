@@ -1,6 +1,17 @@
-# TaskFlow — Stay in flow. 
+# TaskFlow — Stay in flow. ⚡
 
 A modern, responsive **Dark Task Manager** web application built with **Node.js** and **Express**. Inspired by clean productivity dashboards, it features a near-black palette, muted slate blue smart lists, color-coded category tiles, periwinkle task cards, and an interactive month calendar.
+
+🔗 **Live Demo:** [https://taskflow-ag.vercel.app](https://taskflow-ag.vercel.app)
+
+---
+
+## How It Works
+
+1. **Google OAuth 2.0 Login:** Users authenticate securely via Google Sign-In using standard `profile` and `email` scopes. No custom passwords are created or stored.
+2. **Per-User Data Isolation:** Each task is linked directly to the authenticated user's database identifier (`userId: req.user._id`). All `/api/todos` operations require active session validation and strictly scope queries to the logged-in user, guaranteeing complete task privacy.
+3. **Persistent MongoDB Sessions:** Sessions are persisted in MongoDB via `connect-mongo` using secure HTTP-only cookies (`connect.sid`), allowing seamless session retention across mobile and desktop devices.
+4. **Responsive Client Architecture:** A lightweight, vanilla JavaScript client coordinates with the REST API to provide instant category filtering, smart list views (*My Day*, *Upcoming*, *Important*), and real-time completion metrics.
 
 ---
 
@@ -65,7 +76,7 @@ cp .env.example .env
 | Variable | Description | Example |
 | :--- | :--- | :--- |
 | `PORT` | Local server port | `3000` |
-| `BASE_URL` | Application root URL | `http://localhost:3000` or `https://your-app.onrender.com` |
+| `BASE_URL` | Application root URL | `http://localhost:3000` or `https://taskflow-ag.vercel.app` |
 | `MONGODB_URI` | MongoDB Atlas or local connection string | `mongodb+srv://user:pass@cluster.mongodb.net/taskflow` |
 | `SESSION_SECRET` | Express session secret key | `super_secure_random_string` |
 | `GOOGLE_CLIENT_ID` | Google OAuth Client ID | `xxxx.apps.googleusercontent.com` |
@@ -91,3 +102,22 @@ cp .env.example .env
    - Click **"Continue with Google"** to authenticate via Google OAuth.
    - Tasks are privately saved to your MongoDB database!
 
+---
+
+## Known Limitations / Roadmap
+
+- **Known Limitations:**
+  - Tasks currently support single-day due dates without recurring intervals or sub-tasks.
+  - No native browser push or email notification alerts for upcoming due dates.
+  - Requires an active internet connection to synchronize with MongoDB Atlas and Google OAuth.
+- **Roadmap:**
+  - [ ] Drag-and-drop task prioritization and custom reordering.
+  - [ ] Custom user categories and user-defined color themes.
+  - [ ] Email and push reminder notifications for scheduled deadlines.
+  - [ ] Offline support via Service Workers (Progressive Web App).
+
+---
+
+## License
+
+MIT © [Aryaman Sharma (aryamaxn)](https://github.com/aryamaxn)

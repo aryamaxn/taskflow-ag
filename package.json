@@ -1,8 +1,13 @@
 {
   "name": "taskflow",
   "version": "1.0.0",
-  "description": "TaskFlow — A classy personal task manager with authentication and completion metrics",
+  "description": "Dark, responsive to-do app with Google sign-in and private per-user tasks",
   "main": "server.js",
+  "homepage": "https://taskflow-ag.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aryamaxn/taskflow-ag.git"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
@@ -13,11 +18,15 @@
   "keywords": [
     "todo",
     "taskflow",
+    "task-manager",
     "productivity",
-    "nodejs",
-    "express"
+    "google-oauth",
+    "mongodb",
+    "express",
+    "dark-theme",
+    "responsive"
   ],
-  "author": "",
+  "author": "Aryaman Sharma",
   "license": "MIT",
   "dependencies": {
     "connect-mongo": "^6.0.0",
