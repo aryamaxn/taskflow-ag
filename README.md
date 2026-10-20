@@ -1,4 +1,4 @@
-# TaskFlow — Stay in flow. ⚡
+# TaskFlow — Stay in flow. 
 
 A modern, responsive **Dark Task Manager** web application built with **Node.js** and **Express**. Inspired by clean productivity dashboards, it features a near-black palette, muted slate blue smart lists, color-coded category tiles, periwinkle task cards, and an interactive month calendar.
 
