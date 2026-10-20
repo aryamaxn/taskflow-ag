@@ -9,10 +9,10 @@ A modern, responsive **Dark Task Manager** web application built with **Node.js*
 - **Page Background**: Near-black (`#121212`) with dark surface cards (`#1a1a22` / `#22222d`).
 - **Smart-List Cards**: Muted slate blue (`#4A5D8A`) for *My Day*, *Upcoming*, and *Important*.
 - **Category Tiles** (Rounded corners ~16px):
-  - 🔵 **Personal**: Light blue (`#7FA6F5`)
-  - 🟣 **Work**: Purple (`#7B72E0`)
-  - 🟣 **Learning**: Magenta (`#B567C9`)
-  - 🟠 **Shopping**: Salmon (`#E8A0A0`)
+  - **Personal**: Light blue (`#7FA6F5`)
+  - **Work**: Purple (`#7B72E0`)
+  - **Learning**: Magenta (`#B567C9`)
+  - **Shopping**: Salmon (`#E8A0A0`)
 - **Task Cards**: Light blue (`#8FB0F7`) with:
   - Round circular checkbox
   - Bold titles
